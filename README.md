@@ -12,6 +12,4 @@ Instructions how to install and run your game. Maybe google "python requirements
 Instructions how to play your game. Include instructions so that the grader can experience your full game (doesn't overlook any hidden features).
 
 ## Authors
-Linda Tang
-Nicole Coenen
-Vincent Bosch
+Linda Tang, Nicole Coenen & Vincent Bosch
