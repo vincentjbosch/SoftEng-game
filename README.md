@@ -1,9 +1,7 @@
-# <Name of your Game>
+# <Slang>
 
 ## Introduction
-Short description of your game, and maybe an image, so people quickly understand what it is about.
-
-![example-image](https://upload.wikimedia.org/wikipedia/commons/c/c0/Pac-Man_gameplay_%281x_pixel-perfect_recreation%29.png)
+Snake game with enemies. Dodge the enemies and collect the fruit, which makes you bigger. As you get bigger, it gets harder to avoid the walls
 
 ## Install/Run Instructions
 Instructions how to install and run your game. Maybe google "python requirements.txt" to easily install Python packages using pip.
