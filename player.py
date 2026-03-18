@@ -14,3 +14,4 @@ class Player():
             pygame.draw.rect(screen, color, rect)
             pygame.draw.rect(screen, DARKER_PURPLE, rect, 1)
 
+    
