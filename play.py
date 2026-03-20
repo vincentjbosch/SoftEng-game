@@ -2,6 +2,7 @@ import pygame
 
 from board import Board
 from player import Player
+from fruit import Fruit
 
 def main():
     pygame.init()
@@ -15,12 +16,14 @@ def main():
 
     snake = Player()
     board = Board(screen, block_amount, block_size)
+    fruit = Fruit(screen, block_size)
 
     running = True
     while running:
         clock.tick(5)
         board.draw()
         snake.draw(screen, block_size)
+        fruit.draw()
         pygame.display.update()
 
         for event in pygame.event.get():
@@ -37,10 +40,11 @@ def main():
                 elif event.key == pygame.K_DOWN and snake.direction != "UP":
                     snake.direction = "DOWN"
 
-        snake.move()
+        snake.move(fruit)
 
         if snake.wall_collision(block_amount):
             running = False
+
         
         board.draw()
         snake.draw(screen, block_size)

@@ -20,7 +20,7 @@ class Player():
         if new_direction != opposite_directions[self.direction]:
             self.direction = new_direction
 
-    def move(self):
+    def move(self, fruit):
         head_x, head_y = self.slang[0]
 
         if self.direction == "RIGHT":
@@ -33,7 +33,11 @@ class Player():
             new_head = (head_x, head_y + 1)
 
         self.slang.insert(0, new_head)
-        self.slang.pop()
+        
+        if self.slang[0] == fruit.pos:
+            fruit.get(self)
+        else:     
+            self.slang.pop()
 
        
     def draw(self, screen, block_size):
@@ -54,6 +58,9 @@ class Player():
             return True
         
         return False
+    
+    def grow():
+        self.slang.append()
 
 
 
