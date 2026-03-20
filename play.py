@@ -78,7 +78,7 @@ def main():
             snake.move(fruit)
             enemy.move()
 
-            if snake.wall_collision(block_amount) or snake.self_collision():
+            if snake.wall_collision(block_amount) or snake.self_collision() or snake.enemy_collision(enemy):
                 game_state = "GAME_OVER"
 
             fruit.draw()
