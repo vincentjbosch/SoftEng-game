@@ -33,6 +33,13 @@ class Snake_Abstract(ABC):
     def self_collision(self):
         head = self.slang[0]
         return head in self.slang[1:]
+    
+    def enemy_collision(self, enemy):
+        for pos in self.slang:
+            if pos in enemy.slang:
+                return True
+        return False
+
 
     @abstractmethod
     def move(self, fruit):
