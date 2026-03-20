@@ -17,7 +17,6 @@ class Board:
                 rect = pygame.Rect(self.block_size * i, self.block_size * j, self.block_size, self.block_size)
                 pygame.draw.rect(self.screen, YELLOW, rect)
                 pygame.draw.rect(self.screen, ORANGE, rect, 1)
-        pygame.display.update()
 
 
     

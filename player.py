@@ -21,7 +21,7 @@ class Player():
             new_head = (head_x, head_y + 1)
 
         self.slang.insert(0, new_head)
-        self.slang.pop
+        self.slang.pop()
        
     def draw(self, screen, block_size):
         for i, (x, y) in enumerate(self.slang):
