@@ -27,6 +27,25 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT and snake.direction != "LEFT":
+                    snake.direction = "RIGHT"
+                elif event.key == pygame.K_LEFT and snake.direction != "RIGHT":
+                    snake.direction = "LEFT"
+                elif event.key == pygame.K_UP and snake.direction != "DOWN":
+                    snake.direction = "UP"
+                elif event.key == pygame.K_DOWN and snake.direction != "UP":
+                    snake.direction = "DOWN"
+
+        snake.move()
+
+        if snake.wall_collision(block_amount):
+            running = False
+        
+        board.draw()
+        snake.draw(screen, block_size)
+        pygame.display.update()            
+
     pygame.quit()
 
 if __name__ == '__main__':
