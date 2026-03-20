@@ -20,7 +20,7 @@ def main():
 
     running = True
     while running:
-        clock.tick(4)
+        clock.tick(6)
         board.draw()
         snake.draw(screen, block_size)
         fruit.draw()
@@ -43,7 +43,10 @@ def main():
         snake.move(fruit)
 
         if snake.wall_collision(block_amount):
-            running = False        
+            running = False
+        
+        if snake.self_collision():
+            running = False
 
     pygame.quit()
 

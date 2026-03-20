@@ -59,8 +59,6 @@ class Player():
         
         return False
     
-    def grow():
-        self.slang.append()
-
-
-
+    def self_collision(self):
+        head = self.slang[0]
+        return head in self.slang[1:]
