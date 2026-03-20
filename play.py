@@ -3,6 +3,7 @@ import pygame
 from board import Board
 from player import Player
 from fruit import Fruit
+from enemy import Enemy
 
 WHITE = (255, 255, 255)
 
@@ -14,10 +15,11 @@ def draw_text(screen, text, size, x, y):
 
 def reset_game(screen, block_amount, block_size):
     snake = Player()
+    enemy = Enemy()
     board = Board(screen, block_amount, block_size)
     fruit = Fruit(screen, block_size)
     fruit.get(snake)
-    return snake, board, fruit
+    return snake, enemy, board, fruit
 
 def main():
     pygame.init()
@@ -30,7 +32,7 @@ def main():
     pygame.display.set_caption("Snake")
     clock = pygame.time.Clock()
 
-    snake, board, fruit = reset_game(screen, block_amount, block_size)
+    snake, enemy, board, fruit = reset_game(screen, block_amount, block_size)
 
     running = True
     game_state = "HOME"
@@ -45,7 +47,7 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if game_state == "HOME":
                     if event.key == pygame.K_SPACE:
-                        snake, board, fruit = reset_game(screen, block_amount, block_size)
+                        snake, enemy, board, fruit = reset_game(screen, block_amount, block_size)
                         game_state = "PLAYING"
 
                 elif game_state == "PLAYING":
@@ -60,7 +62,7 @@ def main():
 
                 elif game_state == "GAME_OVER":
                     if event.key == pygame.K_r:
-                        snake, board, fruit = reset_game(screen, block_amount, block_size)
+                        snake, enemy, board, fruit = reset_game(screen, block_amount, block_size)
                         game_state = "PLAYING"
                     elif event.key == pygame.K_h:
                         game_state = "HOME"
@@ -74,12 +76,14 @@ def main():
 
         elif game_state == "PLAYING":
             snake.move(fruit)
+            enemy.move()
 
             if snake.wall_collision(block_amount) or snake.self_collision():
                 game_state = "GAME_OVER"
 
             fruit.draw()
             snake.draw(screen, block_size)
+            enemy.draw(screen, block_size)
 
             score = len(snake.slang) - 3
             draw_text(screen, f"Score: {score}", 30, width // 2, 20)
@@ -87,6 +91,7 @@ def main():
         elif game_state == "GAME_OVER":
             fruit.draw()
             snake.draw(screen, block_size)
+            enemy.draw(screen, block_size)
 
             score = len(snake.slang) - 3
             draw_text(screen, "GAME OVER", 55, width // 2, height // 2 - 50)
