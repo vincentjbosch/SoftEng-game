@@ -44,8 +44,4 @@ class Snake_Abstract(ABC):
     @abstractmethod
     def move(self, fruit):
         """ Moves the snake. """
-    
-    @abstractmethod
-    def wall_collision(self, block_amount):
-        """ Handles wall collision """
 

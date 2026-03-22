@@ -17,7 +17,7 @@ def reset_game(screen, block_amount, block_size):
     snake = Player()
     enemy = Enemy()
     board = Board(screen, block_amount, block_size)
-    fruit = Fruit(screen, block_size)
+    fruit = Fruit(screen, block_size, block_amount)
     fruit.get(snake)
     return snake, enemy, board, fruit
 
@@ -25,7 +25,7 @@ def main():
     pygame.init()
 
     width, height = 500, 500
-    block_amount = 16
+    block_amount = 17
     block_size = min(width, height) // block_amount
 
     screen = pygame.display.set_mode((width, height))
@@ -76,7 +76,7 @@ def main():
 
         elif game_state == "PLAYING":
             snake.move(fruit)
-            enemy.move()
+            enemy.move(block_amount)
 
             if snake.wall_collision(block_amount) or snake.self_collision() or snake.enemy_collision(enemy):
                 game_state = "GAME_OVER"
