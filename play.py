@@ -12,13 +12,35 @@ BLACK = (0, 0, 0)
 RED = (200, 0, 0)
 
 def draw_text(screen, text, size, x, y, color):
-    """ """
+    """
+    Render and draw centered text on the screen.
+
+    Args:
+        screen (pygame.Surface): The surface to draw on.
+        text (str): The text to render.
+        size (int): Font size.
+        x (int): X-coordinate of the text center.
+        y (int): Y-coordinate of the text center.
+        color (tuple): RGB color of the text.
+    """
     font = pygame.font.SysFont(None, size)
     surface = font.render(text, True, color)
     rect = surface.get_rect(center=(x, y))
     screen.blit(surface, rect)
 
 def reset_game(screen, block_amount, block_size, enemy_bool):
+    """
+    Initialize and return all game objects.
+
+    Args:
+        screen (pygame.Surface): Game screen.
+        block_amount (int): Amount of blocks across the grid.
+        block_size (int): Size of each block in pixels.
+        use_enemy (bool): Whether to include an enemy.
+
+    Returns:
+        tuple: (snake, enemy, board, fruit)
+    """
     snake = Player()
     if enemy_bool:
         enemy = Enemy()
@@ -26,10 +48,11 @@ def reset_game(screen, block_amount, block_size, enemy_bool):
         enemy = None
     board = Board(screen, block_amount, block_size)
     fruit = Fruit(screen, block_size, block_amount)
-    fruit.get(snake)
+
     return snake, enemy, board, fruit
 
 def main():
+    """ Game initialization and loop. """
     pygame.init()
 
     width, height = 500, 500
@@ -45,7 +68,6 @@ def main():
     game_state = "HOME"
 
     snake, enemy, board, fruit = reset_game(screen, block_amount, block_size, enemy_bool)
-
 
     while running:
         clock.tick(5)
@@ -89,8 +111,7 @@ def main():
             if enemy_bool:
                 draw_text(screen, "Enemy: AAN", 28, width // 2, height // 2 + 120, BLACK)
             else:
-                draw_text(screen, "Enemy: UIT", 28, width // 2, height // 2 + 120, BLACK)
-            
+                draw_text(screen, "Enemy: UIT", 28, width // 2, height // 2 + 120, BLACK)        
 
         elif game_state == "PLAYING":
             snake.move(fruit)
