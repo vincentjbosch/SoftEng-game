@@ -8,11 +8,13 @@ class Player(Snake_Abstract):
     def __init__(self):
         self.slang = [(5, 5), (4, 5), (3, 5)]
         self.direction = "RIGHT"
+        self.next_direction = "RIGHT"
         self.color = PURPLE
         self.head_color = DARKER_PURPLE
 
     def move(self, fruit):
         head_x, head_y = self.slang[0]
+        self.direction = self.next_direction
 
         if self.direction == "RIGHT":
             new_head = (head_x + 1, head_y)

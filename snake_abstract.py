@@ -18,7 +18,7 @@ class Snake_Abstract(ABC):
         }
 
         if new_direction != opposite_directions[self.direction]:
-            self.direction = new_direction
+            self.next_direction = new_direction
 
     def draw(self, screen, block_size):
         """ Draws the snake on the screen. """
