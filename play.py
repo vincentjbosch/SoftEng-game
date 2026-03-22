@@ -6,10 +6,15 @@ from fruit import Fruit
 from enemy import Enemy
 
 WHITE = (255, 255, 255)
+PURPLE = (167, 88, 162)
+DARKER_PURPLE = (137, 41, 133)
+BLACK = (0, 0, 0)
+RED = (200, 0, 0)
 
-def draw_text(screen, text, size, x, y):
+def draw_text(screen, text, size, x, y, color):
+    """ """
     font = pygame.font.SysFont(None, size)
-    surface = font.render(text, True, WHITE)
+    surface = font.render(text, True, color)
     rect = surface.get_rect(center=(x, y))
     screen.blit(surface, rect)
 
@@ -77,14 +82,15 @@ def main():
         board.draw()
 
         if game_state == "HOME":
-            draw_text(screen, "SNAKE", 60, width // 2, height // 2 - 60)
-            draw_text(screen, "Druk op SPACE om te starten", 28, width // 2, height // 2)
-            draw_text(screen, "Druk op E om enemy aan/uit te zetten", 28, width // 2, height // 2 + 40)
+            draw_text(screen, "SNAKE", 60, width // 2, height // 2 - 60, DARKER_PURPLE)
+            draw_text(screen, "Gebruik de pijltjestoetsen om te bewegen", 24, width // 2, height // 2 - 20, PURPLE)
+            draw_text(screen, "Druk op SPACE om te starten", 28, width // 2, height // 2 + 40, BLACK)
+            draw_text(screen, "Druk op E om enemy aan/uit te zetten", 28, width // 2, height // 2 + 80, BLACK)
             if enemy_bool:
-                draw_text(screen, "Enemy: AAN", 28, width // 2, height // 2 + 80)
+                draw_text(screen, "Enemy: AAN", 28, width // 2, height // 2 + 120, BLACK)
             else:
-                draw_text(screen, "Enemy: UIT", 28, width // 2, height // 2 + 80)
-            draw_text(screen, "Gebruik de pijltjestoetsen om te bewegen", 24, width // 2, height // 2 + 120)
+                draw_text(screen, "Enemy: UIT", 28, width // 2, height // 2 + 120, BLACK)
+            
 
         elif game_state == "PLAYING":
             snake.move(fruit)
@@ -103,7 +109,7 @@ def main():
                 enemy.draw(screen, block_size)
 
             score = len(snake.slang) - 3
-            draw_text(screen, f"Score: {score}", 30, width // 2, 20)
+            draw_text(screen, f"Score: {score}", 30, width // 2, 20, BLACK)
 
         elif game_state == "GAME_OVER":
             fruit.draw()
@@ -112,10 +118,10 @@ def main():
                 enemy.draw(screen, block_size)
 
             score = len(snake.slang) - 3
-            draw_text(screen, "GAME OVER", 55, width // 2, height // 2 - 50)
-            draw_text(screen, f"Score: {score}", 30, width // 2, height // 2)
-            draw_text(screen, "Druk op R om opnieuw te spelen", 26, width // 2, height // 2 + 40)
-            draw_text(screen, "Druk op H voor homescreen", 26, width // 2, height // 2 + 75)
+            draw_text(screen, "GAME OVER", 55, width // 2, height // 2 - 50, RED)
+            draw_text(screen, f"Score: {score}", 30, width // 2, height // 2, BLACK)
+            draw_text(screen, "Druk op R om opnieuw te spelen", 26, width // 2, height // 2 + 40, BLACK)
+            draw_text(screen, "Druk op H voor homescreen", 26, width // 2, height // 2 + 75, BLACK)
 
         pygame.display.update()
 
